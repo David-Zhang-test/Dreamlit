@@ -31,7 +31,7 @@ export default component$(() => {
 
     useVisibleTask$(() => {
         const fn = () => {
-            paragraph.value += faker.lorem.words({ min : 2, max : 5 }) + " ";
+            paragraph.value += faker.lorem.words({ min : 20, max : 50 }) + " ";
             if (paragraph.value.length > length.value) {
                 imageUrl.value = faker.image.url();
 
@@ -46,13 +46,18 @@ export default component$(() => {
                 setTimeout(i_fn, faker.number.int({ min : 5, max : 10 }))
                 return;
             }
-            setTimeout(fn, 16)
+            setTimeout(fn, 5)
         }
-        setTimeout(fn, 16)
+        setTimeout(fn, 5)
     })
 
     return (<div style = {{
-        fontFamily : "Poppins"
+        fontFamily : "Poppins",
+        position : "relative",
+        height : "100vh",
+        width : "100vw",
+        display : "flex",
+        flexDirection : "column",
     }}>
         <div style = {{
             display : "flex",
@@ -61,11 +66,11 @@ export default component$(() => {
             alignItems : "center",
             top : 0,
             left : 0,
-            padding : "15px",
+            padding : "15px 15px 15px 15px",
 
-            marginBottom : "10px",
             fontWeight : 600,
-            width : "calc(100vw - 30px)",
+            width : "100%",
+            boxSizing : "border-box",
             backgroundColor : "white"
         }}>
             <BackButton />
@@ -79,12 +84,15 @@ export default component$(() => {
             padding : "0px 32px",
             fontWeight : 500,
             display : "flex",
-            flexDirection : "column"
+            flexDirection : "column",
+            position : "relative",
+            overflow : "scroll",
         }}>
             <div style = {{
                 fontSize : "14px",
                 lineHeight : 1.6,
                 paddingBottom : "16px",
+                paddingTop : "10px"
             }}>{
                 paragraph
             }</div>
@@ -116,12 +124,10 @@ export default component$(() => {
                 flexDirection : "column",
                 width : "100%"
             }}>{interactions.map((interaction, index) => (
-                <div key = { index } style = {{
+                <button key = { index } style = {{
                     background : "linear-gradient(180.00deg, rgb(255, 255, 255),rgba(255, 255, 255, 0.81) 80.712%,rgba(183, 223, 200, 0.17) 100%)",
                     border : "2px solid rgba(34, 21, 128, 0.68)",
                     boxShadow : "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-                    display : "flex",
-                    justifyContent : "center",
                     width : "100%",
                     margin : "6px 0px",
                     padding : "5px 10px",
@@ -130,8 +136,9 @@ export default component$(() => {
                     fontSize : "16px",
                     color : "rgb(34, 21, 128)",
                     userSelect : "none",
-                    boxSizing : "border-box"
-                }}>{ interaction }</div>
+                    boxSizing : "border-box",
+                    textAlign : "center"
+                }}>{ interaction }</button>
             ))}</div>{ interactions.length !== interactionsCount.value
                 ? null
                 : <input class = { thoughtInputClass } style = {{
@@ -142,13 +149,34 @@ export default component$(() => {
                 paddingLeft : "13px",
             }} placeholder = "I have my own thoughts..." />
             }</div>
+            <div style = {{
+                backgroundColor : "rgba(255, 255, 255, 0.8)",
+                position : "absolute",
+                width : "calc(100% - 20px)",
+                height : "100%",
+                margin : "0px 10px",
+                top : 0,
+                left : 0,
+                boxSizing : "border-box",
+                borderRadius : "20px 20px 0px 0px",
+                background : "linear-gradient(rgba(21, 9, 122, 0.8), rgba(167, 32, 98, 0.8), rgba(167, 32, 98, 0.2), rgba(167, 32, 98, 0))"
+                // zIndex : -1,
+            }}>
+                <div style = {{
+                    width : "calc(100% - 6px)",
+                    height : "calc(100% - 3px)",
+                    borderRadius : "17px 17px 0px 0px",
+                    background : "white",
+                    marginTop : "3px",
+                    marginLeft : "3px"
+                }}></div>
+            </div>
+            <div style = {{
+                height : "94px",
+                flexShrink : 0,
+            }}/>
         </div>
 
-        <div style = {{
-            width : "100p%",
-            height : "64px",
-            paddingTop : "36px"
-        }} />
         <div style = {{
             display : "flex",
             flexDirection : "row",

@@ -1,12 +1,12 @@
 import { component$, useSignal } from "@builder.io/qwik";
 import { LoginInput } from "~/components/login-input/login-input";
-import { Link } from "@builder.io/qwik-city";
+import { Link, useNavigate } from "@builder.io/qwik-city";
 
 
 export default component$(() => {
     const email = useSignal("");
     const password = useSignal("");
-
+    const nav = useNavigate();
 
     return (<div style = {{
         display : "flex",
@@ -56,14 +56,48 @@ export default component$(() => {
                 background : "linear-gradient(90.00deg, rgb(6, 44, 129),rgb(255, 0, 106) 100%)",
                 marginTop : "50px",
                 marginBottom : "30px"
-            }}>Sign in</button>
+            }} onClick$ = { async () => {
+                // POST api.dreamlit.com:8080/auth/login
+                try {
+                    const response = await fetch("http://api.dreamlit.ai:8080/auth/login", {
+                        method : "POST",
+                        headers : {
+                            "Content-Type" : "application/json"
+                        },
+                        body : JSON.stringify({
+                            username : email.value,
+                            password : password.value
+                        })
+                    })
+
+                    const json = await response.json();
+                    if (json.code !== 10000) {
+                        throw json.data
+                    }
+
+                    const data = json.data
+                    console.log(data)
+
+                    localStorage.setItem("isAuthorized", "true")
+                    localStorage.setItem("email", data.username)
+                    localStorage.setItem("token", data.token)
+
+                    nav("/user")
+
+                } catch (e) {
+                    alert(e)
+                }
+
+
+
+            }} >Sign in</button>
             <div style = {{
                 fontSize : "14px",
                 fontWeight : 400,
                 paddingBottom : "90px"
             }}>
                 Don't have an account?
-                <Link style = {{
+                <Link href = "/user/signup" style = {{
                     marginLeft : "5px",
                     fontWeight : 700,
                 }}>Sign up</Link>
