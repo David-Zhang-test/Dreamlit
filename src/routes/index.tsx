@@ -35,7 +35,7 @@ export default component$(() => {
     track(() => selectedGenre.value);
 
     // make fake call now
-    return Array(faker.number.int({ min : 10, max : 30 })).fill(0).map(() => ({
+    return Array(faker.number.int({ min : 20, max : 30 })).fill(0).map(() => ({
       id : faker.database.mongodbObjectId(),
       title : faker.lorem.words({ min : 1, max : 2 }),
       description : faker.lorem.sentence(),

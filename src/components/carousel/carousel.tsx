@@ -19,7 +19,8 @@ export const Carousel : Component<CarouselProps> = component$(({ images }) => {
     const handle = setInterval(() => {
       const nextImage = (currentImage.value + 1) % images.length;
       currentImage.value = nextImage;
-      refs[nextImage].value?.scrollIntoView({ behavior : "smooth" });
+      // make sure that the y position does not change
+      refs[nextImage].value?.scrollIntoView({ behavior : "smooth", block : "nearest" });
     }, 3000)
 
     cleanup(() => {
