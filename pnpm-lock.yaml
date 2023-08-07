@@ -12,6 +12,7 @@ specifiers:
   '@vanilla-extract/css': ^1.11.1
   eslint: 8.44.0
   eslint-plugin-qwik: ^1.2.6
+  event-source-polyfill: ^1.0.31
   prettier: 2.8.8
   styled-vanilla-extract: ^0.5.4
   typescript: 5.1.6
@@ -21,6 +22,7 @@ specifiers:
 
 dependencies:
   '@fontsource/poppins': 5.0.7
+  event-source-polyfill: 1.0.31
 
 devDependencies:
   '@builder.io/qwik': 1.2.6_undici@5.22.1
@@ -1891,6 +1893,10 @@ packages:
     dependencies:
       require-like: 0.1.2
     dev: true
+
+  /event-source-polyfill/1.0.31:
+    resolution: {integrity: sha512-4IJSItgS/41IxN5UVAVuAyczwZF7ZIEsM1XAoUzIHA6A+xzusEZUutdXz2Nr+MQPLxfTiCvqE79/C8HT8fKFvA==}
+    dev: false
 
   /expand-template/2.0.3:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}

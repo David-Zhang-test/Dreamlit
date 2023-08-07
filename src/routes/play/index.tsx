@@ -10,6 +10,7 @@ import { PhotoButton } from "../../components/dream-icons/photo-button";
 import { PublishButton } from "../../components/dream-icons/publish-button";
 import { ShareButton } from "../../components/dream-icons/share-button";
 import { UnionButton } from "../../components/dream-icons/union-button";
+// import "../../../node_modules/.pnpm/event-source-polyfill@1.0.31/node_modules/event-source-polyfill/src/eventsource"
 
 export const useDreamTitle = routeLoader$(() => {
   // length
@@ -22,7 +23,7 @@ export default component$(() => {
   const loc = useLocation();
   console.log(loc.url.searchParams);
 
-  const paragraph = useSignal("");
+  const paragraphs = useStore<string[]>(() => [""]);
   const length = useSignal(faker.number.int({ min: 1200, max: 2400 }))
 
   const imageUrl = useSignal("");
@@ -38,8 +39,8 @@ export default component$(() => {
 
   useVisibleTask$(async () => {
     const fn = () => {
-      paragraph.value += faker.lorem.words({ min: 20, max: 50 }) + " ";
-      if (paragraph.value.length > length.value) {
+      paragraphs[paragraphs.length - 1] += faker.lorem.words({ min: 20, max: 50 }) + " ";
+      if (paragraphs[paragraphs.length - 1].length > length.value) {
         imageUrl.value = faker.image.url();
 
         const i_fn = () => {
@@ -59,16 +60,21 @@ export default component$(() => {
 
     // create sse connection, with credential stored in header
     // const response = await fetch("http://api.dreamlit.ai/dream/create", {
-    //   method : "POST",
+    //   method : "GET",
     //   headers : {
     //     "Content-Type" : "application/json",
     //     "Authorization" : "Bearer " + localStorage.getItem("token"),
     //   }
     // })
 
-    // console.log(response)
+    // const sse = new EventSourcePolyfill("http://api.dreamlit.ai/dream/create", {
+    //   method : "POST",
+    //   headers : {
+    //     "Authorization" : `Bearer ${localStorage.getItem("token")}`
+    //   }
+    // })
 
-
+    // console.log(sse)
   })
 
   return (<div style={{
@@ -115,7 +121,7 @@ export default component$(() => {
         paddingBottom: "16px",
         paddingTop: "10px"
       }}>{
-          paragraph
+          paragraphs[0]
         }</div>
       <div>{imageUrl.value === ""
         ? null

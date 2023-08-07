@@ -39,6 +39,7 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
-    "@fontsource/poppins": "^5.0.5"
+    "@fontsource/poppins": "^5.0.5",
+    "event-source-polyfill": "^1.0.31"
   }
 }

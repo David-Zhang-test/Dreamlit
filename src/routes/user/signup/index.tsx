@@ -49,7 +49,7 @@ export default component$(() => {
                 // marginTop : "-5px"
             }} onClick$ = { async () => {
                 try {
-                    const response = await fetch("http://api.dreamlit.ai:8080/auth/sendVerifyCode", {
+                    const response = await fetch("http://api.dreamlit.ai/auth/sendVerifyCode", {
                         method : "POST",
                         headers : {
                             "Content-Type" : "application/json",

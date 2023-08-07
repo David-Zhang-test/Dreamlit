@@ -57,9 +57,9 @@ export default component$(() => {
                 marginTop : "50px",
                 marginBottom : "30px"
             }} onClick$ = { async () => {
-                // POST api.dreamlit.com:8080/auth/login
+                // POST api.dreamlit.com/auth/login
                 try {
-                    const response = await fetch("http://api.dreamlit.ai:8080/auth/login", {
+                    const response = await fetch("http://api.dreamlit.ai/auth/login", {
                         method : "POST",
                         headers : {
                             "Content-Type" : "application/json"
