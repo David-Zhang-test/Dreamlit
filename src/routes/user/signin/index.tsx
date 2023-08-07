@@ -59,7 +59,7 @@ export default component$(() => {
             }} onClick$ = { async () => {
                 // POST api.dreamlit.com/auth/login
                 try {
-                    const response = await fetch("http://api.dreamlit.ai/auth/login", {
+                    const response = await fetch("http://api.dreamlit.ai:8080/auth/login", {
                         method : "POST",
                         headers : {
                             "Content-Type" : "application/json"

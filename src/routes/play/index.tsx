@@ -166,7 +166,6 @@ export default component$(() => {
           boxSizing: "border-box",
           textAlign: "center"
         }} onClick$ = {async () => {
-          
         }}>{interaction}</button>
       ))}</div>{interactions.length !== interactionsCount.value
         ? null
