@@ -107,3 +107,18 @@ input[type=number] {
 }
 
 
+textarea {
+  border : none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea:active {
+  outline: none;
+}
+
+textarea:hover {
+  outline: none;
+}

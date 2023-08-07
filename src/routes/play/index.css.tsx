@@ -8,3 +8,12 @@ export const thoughtInputClass = style({
         }
     }
 })
+
+export const descriptionInputClass = style({
+    selectors : {
+        '&::placeholder' : {
+            color : "rgb(21, 9, 122)",
+            fontFamily : "Poppins"
+        }
+    }
+})
